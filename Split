@@ -1,0 +1,435 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Presentation given at JMM 2017
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[utf8x,xcolor=svgnames]{beamer}
+
+\usepackage{tikz}
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+%\usepackage[normalem]{ulem}
+\usepackage{amssymb}
+\usepackage{geometry}             
+%\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\usepackage{amsbsy}
+%\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage{tikz-cd}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{verbatim}
+%\usepackage{paralist}
+\usepackage{bbm}
+\usepackage{cite}
+%\usepackage[utf8]{inputenc}
+%\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+%\usepackage{enumitem}
+
+%\addtolength{\textwidth}{1.5em}
+%\addtolength{\oddsidemargin}{-0.75em}
+
+%\renewcommand{\labelenumi}{\textbf{\arabic{enumi}.}}
+%\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Namba}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{{\overline{N}}}
+\renewcommand{\G}{\overline{G}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\pmb{\mathcal C}}
+
+\newcommand{\Pkl}{\ensuremath{\mathcal P_\kappa \lambda}}
+\newcommand{\Pkk}{\ensuremath{\mathcal P_\kappa \kappa}}
+
+%\newcommand{\C}{\leftexp{<\omega}{2}}
+%\newcommand{\B}{\mathbb{B}_\mathcal{N}}
+%\newcommand{\B}{\mathbb{B}}
+\renewcommand{\U}{\mathcal{U}}
+\renewcommand{\c}{\mathfrak{c}}
+%\newcommand{\PFA}{\textup{\ensuremath{\textsf{PFA}}}}
+\newcommand{\ZFC}{\textup{\ensuremath{\textsf{ZFC}}}}
+\newcommand{\CH}{\textup{\textsf{CH}}}
+\newcommand{\GCH}{\textup{\ensuremath{\textsf{GCH}}}}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\height}{height}
+\DeclareMathOperator{\ran}{range}
+\DeclareMathOperator{\otp}{otp}
+\DeclareMathOperator{\cp}{cp}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\Succ}{succ}
+
+\newcommand{\Ord}{\textup{\ensuremath{\text{Ord}}}}
+\newcommand{\id}{\textup{\ensuremath{\text{id}}}}
+
+\newcommand{\st}{\; | \;}
+\newcommand{\set}[2]{\left\{#1\st #2 \right\}}
+\newcommand{\seq}[2]{\langle #1 \st #2 \rangle}
+\DeclareMathOperator{\Add}{\mathcal A\textit{dd}\,}
+\DeclareMathOperator{\Coll}{\mathcal C\textit{oll}\,}
+
+\newcommand{\Ptail}{\P_{\mathrm{tail}}}
+\newcommand{\Gtail}{G_{\mathrm{tail}}}
+
+\newcommand{\leftexp}[2]{{\vphantom{#2}}^{#1}{#2}}
+\newcommand{\funcs}[2]{\leftexp{#1}{#2}}
+
+\newcommand{\forces}{\Vdash}
+\newcommand{\rest}{\mathbin{\upharpoonright}}
+
+\newcommand{\Split}[1]{{#1}\textup{\textsf{-Split}}}
+\newcommand{\SSplit}[1]{{#1}\textup{\textsf{-SSplit}}}
+\newcommand{\fSplit}[1]{{\ensuremath{#1\textsf{\textup{-Split}}_{\mathrm{f}}}}}
+
+\DeclareMathOperator{\TP}{\textup{\textsf{TP}}}
+\DeclareMathOperator{\BP}{\textup{\textsf{BP}}}
+\DeclareMathOperator{\SBP}{\textup{\textsf{SBP}}}
+\DeclareMathOperator{\IBP}{\textup{\textsf{IBP}}}
+\DeclareMathOperator{\ITP}{\textup{\textsf{ITP}}}
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\power}[1]{\mathcal{P}(#1)}
+\newcommand{\bkappa}{\bar{\kappa}}
+\newcommand{\Part}[1]{\ensuremath{\mathsf{Part}(#1)}}
+\newcommand{\prooff}[1]{\noindent\emph{Proof of #1.}}
+\newcommand{\qedd}[1]{\hspace*{\fill}\ensuremath{\text{\qed}_{#1}}}
+\newcommand{\kla}[1]{{\langle #1\rangle}}
+\DeclareMathOperator{\dunion}{\mathop{\bigtriangledown}}
+\DeclareMathOperator{\dintersection}{\mathop{\bigtriangleup}}
+\newcommand{\card}[1]{{\mathsf{card}(#1)}}
+\newcommand{\V}{\mathrm{V}}
+
+\newcommand{\NSh}[1]{\ensuremath{\mathsf{NSh_{#1}}}}
+\newcommand{\NShStar}[1]{\ensuremath{\mathsf{NSh^*_{#1}}}}
+
+\renewcommand{\phi}{\varphi}
+\newcommand{\cf}{\mathrm{cf}}
+
+\mode<presentation>
+\setbeamertemplate{navigation symbols}{}
+\usetheme{Boadilla}
+\usecolortheme[named={Maroon}]{structure}
+
+\makeatother
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.45\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+  	\usebeamerfont{date in head/foot}\insertshortdate\hspace*{3em}
+    \insertframenumber{} / \inserttotalframenumber%\hspace*{1ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatletter
+
+
+
+%\useoutertheme{split}
+
+%\renewcommand{\emph}{\textit}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{question}{Question}
+
+
+\title{Split Principles}
+\author[Kaethe Minden]{Kaethe Minden \newline (joint with Gunter Fuchs)}
+\institute[GC CUNY]{Graduate Center, CUNY}
+\date[JMM]{Joint Mathematics Meetings\\ 8 January 2017}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\begin{frame}
+%\begin{abstract} \end{abstract}
+%\end{frame}
+
+\begin{frame}
+\frametitle{$\Split{\kappa}$}
+Split principles are ``anti-large cardinal axioms'' which characterize the failure of a regular cardinal to satisfy certain large cardinal properties.
+
+\vspace{1em}
+
+Let $\kappa$ be a cardinal.
+We shall refer to a sequence of the form $\seq{ d_\alpha }{ \alpha < \kappa }$ as a \textbf{\emph{$\kappa$-list}} if for all $\alpha<\kappa$, $d_\alpha \subseteq \alpha$.
+
+\begin{definition}[The original split principle] A $\kappa$-list $\vec d = \seq{ d_\alpha }{ \alpha < \kappa }$ \textbf{\emph{splits unbounded sets}} so long as for every unbounded $A \subseteq \kappa$ there is a $\beta < \kappa$ which \emph{splits} $A$ (with respect to $\vec{d}$); i.e. both
+	$$A_\beta^+ := \set{ \alpha \in A }{ \beta \in d_\alpha } \text{ and } A_\beta^- := \set{ \alpha \in A }{ \beta \notin d_\alpha }$$
+are unbounded in $\kappa$.
+
+If there is a $\kappa$-list that splits unbounded sets, then we say that \Split{$\kappa$} holds.
+\end{definition}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{center}
+\begin{tikzpicture}
+
+\draw[->] (-5,-3)--(5,-3);
+\draw[->] (-5,-3)--(-5,3);
+%\draw[->, densely dotted] (-5,0)--(5,0);
+\node [below] at (5,-3) {$A \subseteq \kappa$};
+\node [left] at (-5,3) {$\kappa$};
+
+\node at (2,-3) {$\bullet$};
+\node  at (2.5,-3) {$\bullet$};
+\node at (3.4,-3) {$\bullet$};
+\node at (0.8,-3) {$\bullet$};
+\node  at (-1,-3) {$\bullet$};
+\node  at (4,-3) {$\bullet$};
+\node at (4.5,-3) {$\bullet$};
+\node at (-2,-3) {$\bullet$};
+\node at (-1.3,-3) {$\bullet$};
+
+\node at (-4,-3) {$\bullet$}; \node [below] at (-4,-3) {$\delta \in A$};
+\draw [fill, color=violet] (-4,1) circle [x radius=0.15cm, y radius=0.75cm];
+\draw[fill, color=violet] (-4,-1) circle [x radius = 0.1cm, y radius=0.3cm];
+\node[color=violet] at (-4, -2) {$\bullet$};
+\node[color=violet, above] at (-4, 1.75) {$d_\delta$};
+\node at (-5,1.75) {$-$}; \node [left] at (-5,1.75) {$\delta$};
+
+\node  at (2.2,-3) {$\bullet$};
+\node  at (3,-3) {$\bullet$};
+\node at (4.7,-3) {$\bullet$};
+\node  at (1,-3) {$\bullet$};
+
+\node at (0,-3) {$\bullet$}; \node [below] at (0,-3) {$\gamma \in A$}; 
+\draw [fill, color=violet] (0,1) circle [x radius=0.2cm, y radius=1.5cm];
+\draw[fill, color=violet] (0,-2.1) circle [x radius = 0.1cm, y radius=0.3cm];
+\node[color=violet,above] at (0,2.5) {$d_\gamma$};
+\node at (-5,2.5) {$-$}; \node [left] at (-5,2.5) {$\gamma$};
+
+\node at (4.3,-3) {$\bullet$};
+\node at (3.8,-3) {$\bullet$};
+
+%\node at (-5,0) {$-$}; \node [left] at (-5,0) {$\beta$};
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\begin{tikzpicture}
+
+\draw[->] (-5,-3)--(5,-3);
+\draw[->] (-5,-3)--(-5,3);
+\draw[->, densely dotted] (-5,0)--(5,0);
+\node [below] at (5,-3) {$A \subseteq \kappa$};
+\node [left] at (-5,3) {$\kappa$};
+
+\node [color=red] at (2,-3) {$\bullet$};
+\node [color=red] at (2.5,-3) {$\bullet$};
+\node [color=red] at (3.4,-3) {$\bullet$};
+\node [color=red] at (0.8,-3) {$\bullet$};
+\node [color=red] at (-1,-3) {$\bullet$};
+\node [color=red] at (4,-3) {$\bullet$};
+\node [color=red] at (4.5,-3) {$\bullet$};
+\node [color=red] at (-2,-3) {$\bullet$};
+\node [color=red] at (-1.3,-3) {$\bullet$};
+
+\node [color=red] at (-4,-3) {$\bullet$}; \node [below, color=red] at (-4,-3) {$\delta \in A_\beta^-$};
+\draw [fill, color=violet] (-4,1) circle [x radius=0.15cm, y radius=0.75cm];
+\draw[fill, color=violet] (-4,-1) circle [x radius = 0.1cm, y radius=0.3cm];
+\node[color=violet] at (-4, -2) {$\bullet$};
+\node[color=violet, above] at (-4, 1.75) {$d_\delta$};
+\node at (-5,1.75) {$-$}; \node [left] at (-5,1.75) {$\delta$};
+
+
+\node [color=blue] at (2.2,-3) {$\bullet$};
+\node [color=blue] at (3,-3) {$\bullet$};
+\node [color=blue] at (4.7,-3) {$\bullet$};
+\node [color=blue] at (1,-3) {$\bullet$};
+
+\node [color=blue] at (0,-3) {$\bullet$}; \node [below, color=blue] at (0,-3) {$\gamma \in A_\beta^+$}; 
+\draw [fill, color=violet] (0,1) circle [x radius=0.2cm, y radius=1.5cm];
+\draw[fill, color=violet] (0,-2.1) circle [x radius = 0.1cm, y radius=0.3cm];
+\node[color=violet,above] at (0,2.5) {$d_\gamma$};
+\node at (-5,2.5) {$-$}; \node [left] at (-5,2.5) {$\gamma$};
+
+\node [color=blue] at (4.3,-3) {$\bullet$};
+\node [color=blue] at (3.8,-3) {$\bullet$};
+
+\node at (-5,0) {$-$}; \node [left] at (-5,0) {$\beta$};
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Weakly compact cardinals}
+It turns out that for regular $\kappa$, the properties of a $\kappa$-list splitting unbounded sets and having a cofinal branch are complementary.
+
+\begin{definition} A $\kappa$-list $\vec d = \seq{ d_\alpha }{ \alpha < \kappa }$ has a \textbf{\emph{cofinal branch}} so long as there is
+%an unbounded {Note: b doesn't have to be unbounded}
+a $b \subseteq \kappa$ such that for all $\gamma < \kappa$ there is an $\alpha \geq \gamma$ such that
+\[d_\alpha \cap \gamma = b \cap \gamma.\]
+
+We say that the branch property $\BP(\kappa)$ holds if every $\kappa$-list has a cofinal branch.
+\end{definition}
+
+%\begin{theorem} Let $\kappa$ be regular. Let $\vec d$ be a $\kappa$-list. Then $\vec d$ splits unbounded sets if and only if $\vec d$ does not have a cofinal branch. \end{theorem}
+
+\begin{theorem} Let $\kappa$ be regular. Then $\Split{\kappa} \iff \neg \BP(\kappa) \iff \kappa$ is not weakly compact. \end{theorem}
+
+\end{frame}
+
+%\begin{frame}
+%\begin{proof}[Proof of Corollary.]
+%
+%\end{proof}
+%\end{frame}
+
+\begin{frame}
+\frametitle{Ineffable cardinals}
+\begin{definition} A $\kappa$-list $\vec d = \seq{ d_\alpha }{\alpha< \kappa}$ has an \textbf{\emph{ineffable branch}} so long as there is $b \subseteq \kappa$ and a stationary $S \subseteq \kappa$ such that for all $\alpha \in S$, 
+	\[d_\alpha = b \cap \alpha.\]
+We say that $\kappa$ has the ineffable branch property, or $\IBP(\kappa)$ holds, if every $\kappa$-list has an ineffable branch. A regular cardinal $\kappa$ is \textbf{\emph{ineffable}} if every $\kappa$-list has an ineffable branch ($\IBP(\kappa)$ holds).
+\end{definition}
+
+We have the following: $\IBP(\kappa) \implies \BP(\kappa)$. In particular, ineffable cardinals are weakly compact.
+\end{frame}
+
+\begin{frame}
+\frametitle{$\SSplit{\kappa}$}
+\begin{definition}
+\label{defn:StationarySplit}
+A $\kappa$-list $\vec d = \seq{d_\alpha}{\alpha < \kappa}$ \textbf{\emph{splits stationary sets}} so long as for every stationary $S \subseteq \kappa$ there is $\beta< \kappa$ which splits $S$, i.e. both
+	$$S_\beta^+ := \set{ \alpha \in S }{ \beta \in d_\alpha } \text{ and } S_\beta^- := \set{ \alpha \in S }{ \beta \notin d_\alpha }$$
+are unbounded in $\kappa$.
+
+We say that $\SSplit{\kappa}$ holds so long as there is a $\kappa$-list which splits stationary sets.
+\end{definition}
+
+%Of course, if $\SSplit{\kappa}$ fails, then so does $\Split{\kappa}$. Thus $\Split{\kappa}$ implies $\SSplit{\kappa}$.
+
+\begin{theorem}
+Let $\kappa$ be regular. Then $\SSplit{\kappa} \iff \kappa$ is not ineffable. \end{theorem}
+\end{frame}
+
+
+\begin{frame} 
+\frametitle{Splitting subsets of $\Pkl$}
+\begin{definition} Let $\kappa$ and $\lambda$ be regular cardinals.
+A $\Pkl$-list $\vec d = \seq{ d_x }{ x \in \Pkl }$ (satisfying $d_x \subseteq x$) is said to \textbf{\emph{split unbounded sets}} if for every unbounded $A \subseteq \Pkl$ there is $\beta < \lambda$ which splits $A$, ie. both
+	$$ A^+_\beta := \set{ x \in A }{ \beta \in d_x } \text{ and } A^-_\beta := \set{ x \in A }{ \beta \notin d_x } $$
+are unbounded %\footnote{$\mathcal A \subseteq \Pkl$ unbounded means that for all $X \in \Pkl$ there is $Y \supseteq X$ with $Y \in \mathcal A$.}
+in $\Pkl$.
+
+If there is a $\Pkl$-list which splits unbounded sets, then \Split{\Pkl} holds.
+\vspace{1em}
+
+A $\Pkl$-list $\vec d = \seq{ d_x }{ x \in \Pkl }$ is said to \textbf{\emph{split stationary sets}} if for every stationary $S \subseteq \Pkl$ there is $\beta < \lambda$ which splits $S$, ie. both
+	$$ S^+_\beta := \set{ x \in S }{ \beta \in d_x } \text{ and }   S^-_\beta := \set{ x \in S }{ \beta \notin d_x } $$
+are unbounded in $\Pkl$.
+
+If there is a $\Pkl$-list which splits stationary sets, then $\SSplit{\Pkl}$ holds.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Large cardinal characterizations}
+
+\begin{theorem} Let $\kappa$ be regular. Then \begin{itemize}
+	\item $\kappa$ is not weakly compact $\iff$ $\Split{\kappa}$ holds.
+	\item $\kappa$ is not ineffable $\iff$ $\SSplit{\kappa}$ holds.
+	\item $\kappa$ is not $\lambda$-ineffable $\iff$ $\SSplit{\Pkl}$ holds.
+	\item $\kappa$ is not supercompact $\iff$ for unboundedly many $\lambda$, $\SSplit{\Pkl}$ holds.
+\end{itemize}
+\end{theorem}
+
+\begin{block}{Question}
+What about $\Split{\Pkl}$?
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Strong/Cofinal Branches}
+
+\begin{definition}
+Let $\vec d = \seq{ d_x }{ x \in \Pkl }$ be a $\Pkl$-list. A set $B \subseteq \lambda$ is a \textbf{\emph{cofinal branch}} through $\vec{d}$ so long as for all $x \in \Pkl$, there is some $y \in \Pkl$ with $y\supseteq x$ such that
+	$$d_y \cap x=B \cap x.$$
+The \textbf{\emph{branch property}} $\BP(\kappa, \lambda)$ holds iff every $\Pkl$-list has a cofinal branch.
+
+\vspace{1em}
+
+A cofinal branch $B$ is \textbf{\emph{strong}} if there is an unbounded set $U\sub\Pkl$ satisfying that for all $x \in \Pkl$ there is a $y \supseteq x$ such that for all $z \supseteq y$ with $z \in U$,
+	$$d_z \cap x = B \cap x.$$
+If every $\Pkl$-list has a strong branch, then the \textbf{\emph{strong branch property}} $\SBP(\kappa,\lambda)$ holds.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{$\Split{\Pkl}$}
+
+\begin{theorem}
+Let $\kappa$ be regular. then $\Split{\Pkl} \iff \neg \SBP(\kappa, \lambda)$.
+\end{theorem}
+
+\begin{block}{Observation}
+If $\Split{\Pkl}$ fails for every $\lambda$, then $\kappa$ is strongly compact (i.e. $\BP(\kappa, \lambda)$ holds).
+\end{block}
+
+\begin{block}{Questions}
+\begin{itemize}
+\item Can there be a $\Pkl$-list that has a cofinal branch but no strong branch?
+
+\item How can the failure of $\BP(\kappa, \lambda)$ be characterized via split principles?
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\begin{center}
+Thank you.
+\end{center}
+\end{frame}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
